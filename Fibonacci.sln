@@ -1,0 +1,68 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fibonacci.Client", "src\Fibonacci.Client\Fibonacci.Client.csproj", "{01CA677C-C36A-4BDE-AB60-DE79A3181AEF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{466B2EEC-154B-4790-A885-E35C3FB02F45}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fibonacci.Host", "src\Fibonacci.Host\Fibonacci.Host.csproj", "{BA194BE5-4DB5-432F-A5DF-96CDAD9940E8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fibonacci.Calculation", "src\Fibonacci.Calculation\Fibonacci.Calculation.csproj", "{74CF5678-D2FF-4950-823B-CD7AF8E9B761}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5019669C-4C07-40E4-AEA3-9B37D2550DDB}"
+	ProjectSection(SolutionItems) = preProject
+		tests\Directory.Build.props = tests\Directory.Build.props
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fibonacci.Calculation.Test", "tests\Fibonacci.Calculation.Test\Fibonacci.Calculation.Test.csproj", "{FCC023C4-531B-42BF-BAA3-D0ACE4EF2FB6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fibonacci.API", "src\Fibonacci.API\Fibonacci.API.csproj", "{849DEE1A-8539-47FB-85F0-FB463B8D4EDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fibonacci.Calculation.Services", "src\Fibonacci.Calculation.Services\Fibonacci.Calculation.Services.csproj", "{02E874B7-31A8-44C0-82BF-1CA14A28F6B0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01CA677C-C36A-4BDE-AB60-DE79A3181AEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01CA677C-C36A-4BDE-AB60-DE79A3181AEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01CA677C-C36A-4BDE-AB60-DE79A3181AEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01CA677C-C36A-4BDE-AB60-DE79A3181AEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA194BE5-4DB5-432F-A5DF-96CDAD9940E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA194BE5-4DB5-432F-A5DF-96CDAD9940E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA194BE5-4DB5-432F-A5DF-96CDAD9940E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA194BE5-4DB5-432F-A5DF-96CDAD9940E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74CF5678-D2FF-4950-823B-CD7AF8E9B761}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74CF5678-D2FF-4950-823B-CD7AF8E9B761}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74CF5678-D2FF-4950-823B-CD7AF8E9B761}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74CF5678-D2FF-4950-823B-CD7AF8E9B761}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCC023C4-531B-42BF-BAA3-D0ACE4EF2FB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCC023C4-531B-42BF-BAA3-D0ACE4EF2FB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCC023C4-531B-42BF-BAA3-D0ACE4EF2FB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCC023C4-531B-42BF-BAA3-D0ACE4EF2FB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{849DEE1A-8539-47FB-85F0-FB463B8D4EDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{849DEE1A-8539-47FB-85F0-FB463B8D4EDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{849DEE1A-8539-47FB-85F0-FB463B8D4EDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{849DEE1A-8539-47FB-85F0-FB463B8D4EDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02E874B7-31A8-44C0-82BF-1CA14A28F6B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02E874B7-31A8-44C0-82BF-1CA14A28F6B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02E874B7-31A8-44C0-82BF-1CA14A28F6B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02E874B7-31A8-44C0-82BF-1CA14A28F6B0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FCC023C4-531B-42BF-BAA3-D0ACE4EF2FB6} = {5019669C-4C07-40E4-AEA3-9B37D2550DDB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3D15C835-3DFC-4C48-A623-5FCC323FEC30}
+	EndGlobalSection
+EndGlobal

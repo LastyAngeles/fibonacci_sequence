@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Fibonacci.API\Fibonacci.API.csproj" />
+		<ProjectReference Include="..\Fibonacci.Calculation\Fibonacci.Calculation.csproj" />
+	</ItemGroup>
+
+</Project>
