@@ -2,7 +2,7 @@
 
 namespace Fibonacci.API
 {
-    public class FibonacciMessage
+    public record FibonacciMessage
     {
         [Required]
         public int TargetFibonacciPositionNumber { get; init; }
@@ -10,5 +10,8 @@ namespace Fibonacci.API
         public int CurrentFibonacciPositionNumber { get; init; }
 
         public int CurrentValue { get; init; }
+
+        [Required]
+        public string? RoutingKey { get; init; }
     }
 }
