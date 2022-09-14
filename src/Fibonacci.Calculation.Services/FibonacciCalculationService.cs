@@ -25,14 +25,14 @@ namespace Fibonacci.Calculation.Services
             var nextFibonacciNumber = previousFibonacciNumber + message.CurrentValue;
             var nextFibonacciPositionNumber = message.CurrentFibonacciPositionNumber + 1;
 
-            var nextMessageToCalculate = new T
+            message = message with
             {
                 TargetFibonacciPositionNumber = message.TargetFibonacciPositionNumber,
                 CurrentFibonacciPositionNumber = nextFibonacciPositionNumber,
                 CurrentValue = nextFibonacciNumber
             };
 
-            return nextMessageToCalculate;
+            return message;
         }
     }
 }
