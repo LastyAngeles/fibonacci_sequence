@@ -4,6 +4,7 @@ using Fibonacci.Client.Options;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,15 +15,17 @@ namespace Fibonacci.Client.Services
     public class HostCalculationService : IHostCalculationService
     {
         private readonly HttpClient _httpClient;
+        private readonly IQueRouterService _routerService;
         private readonly AppOptions _appOptions;
         private readonly ILogger<HostCalculationService> _logger;
 
-        public HostCalculationService(IHttpClientFactory httpClientFactory, ILogger<HostCalculationService> logger,
-            IOptions<AppOptions> appOptions)
+        public HostCalculationService(IHttpClientFactory httpClientFactory, IQueRouterService routerService,
+            IOptions<AppOptions> appOptions, ILogger<HostCalculationService> logger)
         {
             _httpClient = httpClientFactory.CreateClient("FibonacciHttpClient");
-            _logger = logger;
+            _routerService = routerService;
             _appOptions = appOptions.Value;
+            _logger = logger;
         }
 
         public async Task RequestFibonacciNumberAsync(FibonacciMessage message,
@@ -45,6 +48,7 @@ namespace Fibonacci.Client.Services
                 query[nameof(FibonacciMessage.CurrentFibonacciPositionNumber)] =
                     message.CurrentFibonacciPositionNumber.ToString();
                 query[nameof(FibonacciMessage.CurrentValue)] = message.CurrentValue.ToString();
+                query[nameof(FibonacciMessage.RoutingKey)] = message.RoutingKey;
 
                 uriBuilder.Query = query.ToString();
                 return uriBuilder.Uri;
@@ -71,11 +75,21 @@ namespace Fibonacci.Client.Services
             var message = new FibonacciMessage
             {
                 TargetFibonacciPositionNumber = model.FibonacciNumberPosition,
-                CurrentFibonacciPositionNumber = 1,
-                CurrentValue = 1
+                CurrentFibonacciPositionNumber = CalculationConst.InitialFibonacciPosition,
+                CurrentValue = CalculationConst.InitialFibonacciValue
             };
 
-            await RequestFibonacciNumberAsync(message, cancellationToken);
+            var routingQues = _routerService.GetActiveRoutingKeys();
+
+            if (routingQues.Count != _appOptions.ThreadCount)
+                _logger.LogWarning(
+                    "{RoutingService} must produce ques according to the number of declared threads. Current ques number: {QueNumber}. Current thread number: {ThreadNumber}",
+                    nameof(IQueRouterService), routingQues.Count, _appOptions.ThreadCount);
+
+            var calculationTasks = routingQues.Select(routingKey =>
+                RequestFibonacciNumberAsync(message with { RoutingKey = routingKey }, cancellationToken));
+
+            await Task.WhenAll(calculationTasks);
         }
     }
 }
