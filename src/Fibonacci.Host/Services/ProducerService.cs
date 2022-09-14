@@ -37,6 +37,7 @@ public class ProducerService : IProducerService
         if (nextMessage.CurrentFibonacciPositionNumber == nextMessage.TargetFibonacciPositionNumber)
             _logger.LogInformation("Fibonacci number calculation finished. Fibonacci number is: {fibonacciNumber}", nextMessage.CurrentValue);
 
+        //TODO: this is absolute evil! find a way to get existed exchange! (Maxim Meshkov 14.09.22)
         var exchange = await _bus.Advanced.ExchangeDeclareAsync("Fibonacci.Exchange", ExchangeType.Direct, cancellationToken: cancellationToken);
 
         await _bus.Advanced.PublishAsync(exchange, message.RoutingKey, false, new Message<T>(nextMessage),

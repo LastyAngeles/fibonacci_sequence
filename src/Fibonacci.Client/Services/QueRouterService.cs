@@ -9,6 +9,8 @@ namespace Fibonacci.Client.Services
     public class QueRouterService : IQueRouterService
     {
         private readonly IBus _bus;
+        //TODO: think about storing those values in redis cache, for example (Maxim Meshkov 14.09.22)
+        //TODO: such cache would simplify things a lot (Maxim Meshkov 14.09.22)
         private readonly IList<string> _declaredRoutingKeys = new List<string>();
 
         public QueRouterService(IBus bus)
