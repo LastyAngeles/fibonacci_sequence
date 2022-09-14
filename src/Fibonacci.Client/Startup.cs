@@ -27,8 +27,9 @@ public class Startup
 
         services.Configure<AppOptions>(Configuration.GetSection("AppSettings"));
 
-        services.AddTransient<IHostCalculationService, HostCalculationService>();
+        services.AddSingleton<IQueRouterService, QueRouterService>();
         services.AddCalculationServices();
+        services.AddTransient<IHostCalculationService, HostCalculationService>();
         services.AddSingleton(_ => RabbitHutch.CreateBus(Configuration["RabbitMqConnectionString"]));
 
         services.AddHttpClient("FibonacciHttpClient");
