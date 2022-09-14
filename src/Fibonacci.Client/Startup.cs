@@ -1,12 +1,12 @@
 ﻿using EasyNetQ;
 using Fibonacci.Calculation.Services;
+using Fibonacci.Client.Options;
 using Fibonacci.Client.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using HostOptions = Fibonacci.Client.Options.HostOptions;
 
 namespace Fibonacci.Client;
 
@@ -25,7 +25,7 @@ public class Startup
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
 
-        services.Configure<HostOptions>(Configuration.GetSection("HostSettings"));
+        services.Configure<AppOptions>(Configuration.GetSection("AppSettings"));
 
         services.AddTransient<IHostCalculationService, HostCalculationService>();
         services.AddCalculationServices();

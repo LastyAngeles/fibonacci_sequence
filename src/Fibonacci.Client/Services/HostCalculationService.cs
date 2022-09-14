@@ -14,15 +14,15 @@ namespace Fibonacci.Client.Services
     public class HostCalculationService : IHostCalculationService
     {
         private readonly HttpClient _httpClient;
-        private readonly IOptions<HostOptions> _hostOptions;
+        private readonly AppOptions _appOptions;
         private readonly ILogger<HostCalculationService> _logger;
 
         public HostCalculationService(IHttpClientFactory httpClientFactory, ILogger<HostCalculationService> logger,
-            IOptions<HostOptions> hostOptions)
+            IOptions<AppOptions> appOptions)
         {
             _httpClient = httpClientFactory.CreateClient("FibonacciHttpClient");
             _logger = logger;
-            _hostOptions = hostOptions;
+            _appOptions = appOptions.Value;
         }
 
         public async Task RequestFibonacciNumberAsync(FibonacciMessage message,
@@ -37,7 +37,7 @@ namespace Fibonacci.Client.Services
 
             Uri BuildUri()
             {
-                var uriBuilder = new UriBuilder($"{_hostOptions.Value.BaseUri}/api/fibonacci/number");
+                var uriBuilder = new UriBuilder($"{_appOptions.BaseHostUri}/api/fibonacci/number");
                 var query = HttpUtility.ParseQueryString(uriBuilder.Query);
 
                 query[nameof(FibonacciMessage.TargetFibonacciPositionNumber)] =
